@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 312 88">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f6d437;
+        font-size: 50px;
+        font-family: Roboto-Black, Roboto;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-size: 30px;
+        font-family: Roboto-Light, Roboto;
+        font-weight: 300;
+        letter-spacing: 0.382em;
+      }
+    </style>
+  </defs>
+  <g id="Logo" transform="translate(-318 -44)">
+    <text id="D.S.M." class="cls-1" transform="translate(398 92)"><tspan x="-79.902" y="0">D.S.M.</tspan></text>
+    <text id="Games_Studio" data-name="Games Studio" class="cls-2" transform="translate(474 124)"><tspan x="-155.645" y="0">Games Studio</tspan></text>
+  </g>
+</svg>

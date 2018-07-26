@@ -1,0 +1,742 @@
+//cum fac sa scap de faptulca se repeta display flex pentru toate
+//o sa vad.
+//imi impun niste variabile pentru font size-uri
+
+// --------------------VARIABLES-----------------
+$nr_tabs : 6
+$nr_img_galeie : 10
+$nav_height_resp : 80px
+$paddings : 6%
+$paddings_resp : 10px
+$max-width : 1920px
+$logo-height : 50px
+$mg-bot-title : 100px
+$mg-bot-title-resp : 60px
+$mg-sections : 100px
+
+
+//----------------------QUERIES-------------------
+$cheap-desktop : 1612px
+$desktop: 1024px
+$tablet : 768px
+$phone : 500px
+
+
+// ------------------------COLORS----------------
+$dark : #000000
+$dark_grey : #1A1A1A
+$light_grey : #3D3D3F
+$prime_col : #F6D437
+$subtext : #D2D3D3
+$light : #ffffff
+
+//--------------------------SIZES----------------
+$head-size : 40px
+$body-size : 18px
+$head-size-resp: 30px
+$body-size-resp : 16px
+
+//--------------------------FONTS
+
+@font-face
+	src: url(fonts/Open_Sans/OpenSans-Light.ttf)
+	font-family: body-light
+
+@font-face
+	src: url(fonts/Open_Sans/OpenSans-Regular.ttf)
+	font-family: body-regular
+
+@font-face
+	src: url(fonts/Open_Sans/OpenSans-Bold.ttf)
+	font-family: body-xbold
+
+@font-face
+	src: url(fonts/Roboto/Roboto-Black.ttf)
+	font-family: head-black
+
+@font-face
+	src: url(fonts/Roboto/Roboto-Regular.ttf)
+	font-family: head-regular
+
+@font-face
+	src: url(fonts/Roboto/Roboto-Light.ttf)
+	font-family: head-light
+
+// -----------------------MIXINS-------------------
+
+=media ($arg)
+	@media screen and (max-width: $arg)
+		@content
+
+%align
+	display: flex
+	align-items: center
+	justify-content: center
+
+%full
+	width: 100%
+	height: 100%
+	position: absolute
+	left: 0
+	top: 0
+
+//-----------------------GLOBAL------------
+
+*
+	margin: 0
+	box-sizing: border-box
+	line-height: 1.6
+	padding: 0
+	list-style-type: none
+
+//--------------------TEXT TO IMAGE HEADS--------
+.ir 
+  font: 0/0 a
+  text-shadow: none
+  color: transparent
+
+.scrolled
+	background-color: #000
+	position: fixed !important
+	padding: 10px $paddings !important
+	height: $nav_height_resp !important
+	border-bottom: 3px solid $prime_col
+
+	a
+		width: 100%
+		transition: all .3s ease-in-out
+
+		&:hover
+			background-color: $prime_col
+			width: 300%
+		a
+			text-shadow: 1px 1px 5px rgba(0,0,0,0.4)
+
+	// $colors: ($dark,#181506 ,#433a10, #7f6d1d, #a89126, $prime_col)
+	// @for $i from 1 through length($colors) 
+	//    li:nth-of-type(#{$i}) 
+	//        background: nth($colors, $i)
+		   
+		
+		
+
+
+.call-btn
+	position: fixed
+	bottom: 50px
+	left: 6%
+	z-index: 5
+	width: 50px
+	height: 50px
+	border-radius: 50%
+	background:
+		color: $prime_col
+		image: url(img/phone-icon.svg)
+		repeat: no-repeat
+		size: 60%
+		position: center
+	box-shadow: 1px 1px 20px 1px rgba(0,0,0,0.3)
+	transition: all .2s ease-in-out
+
+	&:hover
+		box-shadow: 1px 3px 20px 1px rgba(0,0,0,0.6)
+		cursor: pointer
+
+	+media($phone)
+		width: 50px
+		height: 50px
+		left: 15px
+		bottom: 15px
+
+
+
+.section-title
+	width: 200px
+	margin-bottom: $mg-bot-title
+	position: relative
+	font-size: $head-size
+	color: $light
+	text-align: center
+	font-family: head-black
+	text-transform: uppercase
+	letter-spacing: 5px
+	text-shadow: 2px 2px 20px rgba(0,0,0,0.4)
+
+	+media($phone)
+		margin-bottom: $mg-bot-title-resp
+		font-size: $head-size-resp
+
+	&::after
+		content: ''
+		width: 70%
+		height: 50px
+		position: absolute
+		bottom: -10%
+		right: -10%
+		z-index: -1
+		background:
+			image: url(img/title-back.svg)
+			repeat: no-repeat
+			size: 100%
+			position: center center
+
+		+media($phone)
+			right: 0
+			bottom: -20%
+
+body
+	position: relative
+	max-width: $max-width
+	margin: 0 auto
+	background-color: $dark
+	height: 4000px
+//--------------------NAVBAR-----------------
+#navbar
+	position: absolute
+	top: 0
+	z-index: 5
+	width: 100%
+	max-width: 1920px
+	height: 140px
+	padding: 40px $paddings
+	transition: all .2s ease-in-out
+	perspective: 600px
+	perspective-origin: center $nav_height_resp
+
+	+media($desktop)
+		height: $nav_height_resp
+		padding: 10px $paddings_resp !important
+		border-bottom: 2px solid $prime_col
+		background-color: $dark
+		position: fixed
+
+	&::after
+		content: ''
+		clear: both
+		display: table
+
+	.left
+		width: 30%
+		height: 100%
+		float: left
+
+		+media($desktop)
+			width: calc(100% - 50px)
+
+		h1
+			position: relative
+			height: 100%
+
+			&::before
+				content: ''
+				position: absolute
+				top: 0
+				width: 100%
+				height: 100%
+				background:
+					image: url(logo.png)
+					repeat: no-repeat
+					size: auto 100%
+				transition: all .2s ease-in-out
+				
+				+media($desktop)
+					width: 270px
+
+	.right
+		width: 70%
+		height: 100%
+		float: right
+
+		+media($desktop)
+			display: flex
+			align-items: center
+			width: 30px
+
+		.nav-btn
+			width: 30px
+			height: 30px
+			background:
+				image: url(menu.svg)
+				position: center center
+				repeat: no-repeat
+				size: 100%
+			display: none
+			cursor: pointer
+
+			+media($desktop)
+				display: block
+
+		#tablist-wide, #tablist
+			display: flex
+			justify-content: flex-end
+			list-style-type: none
+			height: 100%
+			z-index: 2
+			overflow: hidden
+			transform-origin: top
+			
+			+media($desktop)
+				display: none
+				
+			a
+				@extend %align
+				padding: 0 30px
+				transition: all .2s ease-in-out
+				text-decoration: none
+				color: #fff
+				font-size: 16px
+				font-family: body-regular
+				letter-spacing: 2px
+				line-height: 50px
+
+				+media($desktop)
+					padding: 10px
+					width: 50%
+					border-bottom: 1px solid rgba($prime_col, 0.4)
+				+media($phone)
+					width: 100%
+
+					
+			.active
+				color: $prime_col
+
+		#tablist
+			display: none
+			transition: all .2s ease-in-out
+
+			+media($desktop)
+				display: inherit
+				position: absolute
+				background-color: $dark
+				width: 100%
+				height: auto
+				left: 0
+				transform: rotateX(-90deg)
+				top: $nav_height_resp
+				
+				li
+					&:hover
+						background-color: $prime_col
+
+			+media($phone)
+				flex-flow: column
+
+//--------------------HERO  -----------------
+#hero		
+	@extend %align
+	width: 100%
+	position: relative
+	height: 100vh	
+	max-height: 1000px
+
+	+media(350px)
+		margin-top: $nav_height_resp
+
+	.hero-background
+		position: absolute
+		width: 100%
+		height: 100%
+		top: 0
+		left: 0
+		z-index: -1
+		background:
+			image: url(img/hero.jpg)
+			position: center center
+			size: cover
+			repeat: no-repeat
+
+		&::after
+			@extend %full
+			height: 110%
+			content: ''
+			background:
+				image: url(overlay.svg)
+				size: cover
+				position: bottom
+				repeat: no-repeat
+
+	.hero-content
+		@extend %align
+		flex-flow: column
+		width: 80%
+
+		.hero-title
+			font-family: head-black
+			color: $light
+			font-size: $head-size
+			letter-spacing: 5px
+			text-transform: uppercase
+
+			+media($phone)
+				font-size: $head-size-resp
+
+		.hero-text
+			width: 90%
+			margin: 20px 0 60px
+
+			+media($phone)
+					width: 100%
+
+			p		
+				font-family: body-regular
+				color: $subtext
+				font-size: $body-size
+				text-align: center
+
+				+media($phone)
+					font-size: $body-size-resp
+
+				
+		.book-btn
+			padding: 10px 20px
+			background-color: $prime_col
+			@extend %align
+			max-width: 270px
+			border-radius: 3px
+
+			img
+				width: 25px
+				margin: 0 10px
+
+			h2
+				font-family: head-black
+				text-transform: uppercase
+				font-size: $body-size
+				letter-spacing: 1px
+
+//--------------------DOTARI ----------------
+#dotari
+	position: relative
+	width: 100%
+	padding: 0 $paddings
+	@extend %align
+	flex-flow: column
+	margin-top: $mg-sections
+	overflow: hidden
+
+	&::before
+		content: ''
+		width: 50%
+		height: 100%
+		z-index: -1
+		position: absolute
+		background:
+			image: url(img/ps4console.jpg)
+			size: 80%
+			repeat: no-repeat
+		opacity: 0.4
+		top: 0
+		right: -20%
+
+		+media($phone)
+					display: none
+
+	.dotari-content
+		width: 100%
+		display: grid
+		grid-template-columns: 1fr 1fr 1fr 1fr
+		grid-template-rows: 1fr
+
+		+media($desktop)
+			grid-template-columns: 1fr 1fr
+			grid-template-rows: 1fr 1fr
+
+		// +media($tablet)
+		// 	grid-template-columns: 1fr		
+
+		.card-dotari
+			@extend %align
+			flex-flow: column
+
+			+media($desktop)
+				margin: 20px 0
+
+			.image-card
+				@extend %align
+				width: 150px
+				height: 150px
+				border-radius: 50%
+				border: 3px solid $light
+
+				+media($phone)
+					width: 100px
+					height: 100px
+
+				img
+					height: 70px
+
+					+media($phone)
+						height: 40px
+
+			span
+				font-family: head-black
+				font-size: $head-size + 10
+				color: $prime_col
+				margin-top: 10px
+				line-height: 1.2
+
+				+media($phone)
+					font-size: $head-size-resp
+
+			h3
+				height: 40px
+				line-height: 1
+				font-family: body-light
+				letter-spacing: 1px
+				font-size: $body-size
+				color: $subtext
+				text-align: center
+
+				+media($phone)
+					font-size: $body-size-resp
+
+//--------------------JOCURI-----------------
+#jocuri
+	position: relative
+	width: 100%
+	padding: 0 $paddings
+	@extend %align
+	flex-flow: column
+	margin-top: $mg-sections
+	
+	+media($phone)
+		padding: 0
+	
+	&::before
+		content: ''
+		width: 50%
+		height: 100%
+		z-index: -1
+		position: absolute
+		background:
+			image: url(img/ps4joystick.jpg)
+			size: 100%
+			repeat: no-repeat
+		opacity: 0.4
+		top: 0
+		left: -20%
+		
+		+media($phone)
+			display: none
+
+
+
+	#jocuri-wrap
+		width: 100%
+		flex-wrap: wrap
+		@extend %align
+		
+		+media($tablet)
+			height: 600px
+			overflow: hidden
+
+	.mini-link
+		color: $prime_col
+		align-self: flex-end
+		padding: 10px 0
+		cursor: pointer
+		display: none
+
+		+media($tablet)
+			display: initial
+
+		&:hover
+			text-decoration: underline
+
+//--------------------PRETURI------------------
+#preturi
+	position: relative
+	width: 100%
+	padding: 100px $paddings
+	@extend %align
+	flex-flow: column
+	margin-top: $mg-sections + 150
+	background-color: $light
+
+	&::before, &::after
+		content: ''
+		width: 100%
+		position: absolute
+		z-index: -1
+		left: 0
+		height: 150px
+		background:
+			image: url(img/waves.svg)
+			repeat: no-repeat
+			position: center center
+			size: 100% 100%
+	&::before
+		top: -75px
+	&::after
+		transform: rotateX(180deg)
+		bottom: -75px
+
+	.oferte
+		width: 100%
+		@extend %align
+		flex-wrap: wrap
+		position: relative
+
+
+		.oferta
+			width: 46%
+			height: 256px
+			margin: 1%
+			background-color: #eee
+			position: relative
+			@extend %align
+			font-family: head-black
+			text-transform: uppercase
+			letter-spacing: 2px
+			color: #aaa
+
+			
+			+media($tablet)
+				width: 100%
+
+	.section-title
+		color: $dark
+		z-index: 1
+		text-shadow: none
+
+		&::before
+			z-index: 1
+
+	#lista_cat
+		width: 80%
+		position: relative
+
+		.lista_cat_li
+			width: 100%
+			@extend %align
+			flex-flow: column
+			margin: 100px 0
+
+			h3
+				font-size: 30px
+				font-family: head-regular
+				letter-spacing: 2px
+				position: relative
+				line-height: 35px
+				margin: 10px 0
+				border-bottom: 2px solid $prime_col
+		
+			ul
+				width: 100%
+
+				li
+					width: 100%
+					font-size: $body-size
+					position: relative
+					margin: 10px 0
+					border-bottom: 2px solid $prime_col
+
+					&::after
+						content: ''
+						display: table
+						clear: both
+
+					.stanga
+						font-family: body-light
+						float: left
+					//DACA nu LAS ASTEA se pastreaza pretul in dreapta
+					//daca le las se duce dedesubt.
+						// +media($phone)
+						// 	float: none
+
+					.dreapta 
+						float: right
+						font-family: body-xbold
+						background: $prime_col
+						padding: 0 20px
+
+						// +media($phone)
+						// 	float: none
+
+//--------------------GALERIE------------------
+#galerie
+	position: relative
+	width: 100%
+	padding: 100px $paddings
+	@extend %align
+	flex-flow: column
+	color: #fff
+	overflow: hidden
+
+	#images-wrap
+		width: 80%
+		position: relative
+		margin-top: 350px
+
+		+media($desktop)
+			width: 100%
+
+
+		.image
+			width: calc(100% / 3)
+			position: relative
+			height: 180px
+			top: 0
+			float: left
+			background:
+				repeat: no-repeat
+				size: cover
+				position: center
+
+			+media($desktop)
+				width: calc(100% / 2)
+
+			+media($phone)
+				width: 100%
+
+		.full
+			width: 100%
+			position: absolute
+			top: -350px
+			height: 350px
+			transition: all .2s ease-in-out
+			z-index: 2
+
+			+media($phone)
+				&:hover
+					top: -450px
+					height: 450px
+			
+
+		@for $i from 1 through $nr_img_galeie
+			.image:nth-child(#{$i})
+				background:
+					image: url(img/galerie/#{$i}.jpg)
+			img
+				width: 100%
+
+#footer
+	width: 100%
+	position: relative
+	@extend %align
+	flex-flow: column
+	background-color: $light
+
+	&::before
+		content: ''
+		width: 100%
+		position: absolute
+		z-index: -1
+		top: -75px
+		left: 0
+		height: 150px
+		background:
+			image: url(img/waves.svg)
+			repeat: no-repeat
+			position: center center
+			size: 100% 100%
+
+	h2
+		font-size: 1em
+		font-family: body-light
+		padding: 20px 0
+		letter-spacing: 3px
+
+	iframe
+		width: 100%
+		height: 300px
