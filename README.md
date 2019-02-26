@@ -1,3 +1,4 @@
+*Acestea sunt notite la inceputul proiectului*
 # DSM-Games-Studio
 Website for DSM Games Studio\
 Ce am facut pana acum:\
